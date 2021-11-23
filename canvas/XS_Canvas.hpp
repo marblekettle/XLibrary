@@ -12,6 +12,8 @@
 # include <SDL.h>
 # include <string>
 
+typedef const std::string	t_cstring;
+
 class	XS_Canvas
 {
 public:
@@ -21,13 +23,13 @@ public:
 				XS_Canvas(const XS_Canvas &copy);
 	XS_Canvas	&operator=(const XS_Canvas &assign);
 	
-	SDL_Window	&getWindow();
-	std::string	&getTitle();
-	int			getWidth();
-	int			getHeight();
-	bool		isReady();
+	SDL_Window	&getWindow() const;
+	t_cstring	&getTitle() const;
+	int			getWidth() const;
+	int			getHeight() const;
+	bool		isReady() const;
 
-	void		setTitle(std::string &title);
+	void		setTitle(t_cstring &title);
 	void		setWidth(int width);
 	void		setHeight(int height);
 

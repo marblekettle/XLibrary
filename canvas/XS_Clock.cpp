@@ -1,4 +1,5 @@
 #include "XS_Clock.hpp"
+#include <iostream>
 
 XS_Clock::~XS_Clock()
 {
@@ -41,14 +42,17 @@ void		XS_Clock::stop()
 		_run = false;
 }
 
-void		XS_Clock::addEvent(Uint32 event, bool (*func)(void *))
+void		XS_Clock::addEvent(Uint32 event, \
+	bool (*func)(SDL_Event &, void *), void *data)
 {
 	_e_map[event] = func;
+	_p_map[event] = data;
 }
 
 void		XS_Clock::removeEvent(Uint32 event)
 {
 	_e_map.erase(event);
+	_p_map.erase(event);
 }
 
 void		XS_Clock::__loop()
@@ -60,7 +64,7 @@ void		XS_Clock::__loop()
 		while (SDL_PollEvent(&event))
 		{
 			if (_e_map.count(event.type))
-				(_e_map[event.type])(&event);
+				(_e_map[event.type])(event, _p_map[event.type]);
 			else if (event.type == SDL_QUIT)
 				_run = false;
 		}

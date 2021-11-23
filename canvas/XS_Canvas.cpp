@@ -63,32 +63,32 @@ XS_Canvas	&XS_Canvas::operator=(const XS_Canvas &assign)
 	return (*this);
 }
 
-SDL_Window	&XS_Canvas::getWindow()
+SDL_Window	&XS_Canvas::getWindow() const
 {
 	return (*(this->_win));
 }
 
-std::string	&XS_Canvas::getTitle()
+t_cstring	&XS_Canvas::getTitle() const
 {
 	return (this->_title);
 }
 
-int			XS_Canvas::getWidth()
+int			XS_Canvas::getWidth() const
 {
 	return (this->_w);
 }
 
-int			XS_Canvas::getHeight()
+int			XS_Canvas::getHeight() const
 {
 	return (this->_h);
 }
 
-bool		XS_Canvas::isReady()
+bool		XS_Canvas::isReady() const
 {
 	return (this->_ready);
 }
 
-void		XS_Canvas::setTitle(std::string &title)
+void		XS_Canvas::setTitle(t_cstring &title)
 {
 	this->_title = title;
 }

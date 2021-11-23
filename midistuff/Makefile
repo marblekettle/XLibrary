@@ -1,5 +1,5 @@
 NAME = test
-SRC = test.cpp
+SRC = main.cpp XS_Midi.cpp
 LIBS = -lWinmm
 
 $(NAME):
