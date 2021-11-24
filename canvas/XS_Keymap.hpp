@@ -2,8 +2,11 @@
 # define XS_KEYMAP_HPP
 # include "XS_Clock.hpp"
 # include <map>
+# include <set>
 
 typedef	std::map<SDL_Scancode, bool (*)(void *)> t_keymap;
+
+typedef	std::set<SDL_Scancode> t_keys;
 
 class	XS_Keymap
 {
@@ -22,10 +25,13 @@ public:
 	void		removeKey(SDL_Scancode key);
 	void		enable(bool on = true);
 	void		disable();
+
+	bool		isKeyDown(SDL_Scancode key);
 private:
 	bool		__evt(SDL_Event &event);
 	t_keymap	_k_map;
 	t_ptrmap	_p_map;
+	t_keys		_keys;
 	XS_Clock	*_clock;
 	bool		_enabled;
 };

@@ -11,22 +11,26 @@ class	XS_Clock
 {
 public:
 				~XS_Clock();
-				XS_Clock(XS_Canvas &canvas, int frame_time = 40);
+				XS_Clock(int frame_time = 40, \
+					bool (*loop_func)(void *) = NULL, \
+					void *loop_data = NULL);
 				XS_Clock(const XS_Clock &copy);
 	XS_Clock	&operator=(const XS_Clock &assign);
 
 	void		start();
 	void		stop();
+	void		setLoopFunction(bool (*func)(void *) = NULL, \
+					void *data = NULL);
 	void		addEvent(Uint32 event, bool (*func)(SDL_Event &, void *), \
-				void *data);
+					void *data = NULL);
 	void		removeEvent(Uint32 event);
 
 private:
-				XS_Clock();
 	void		__loop();
 	t_eventmap	_e_map;
 	t_ptrmap	_p_map;
-	XS_Canvas	*_canv;
+	bool 		(*_l_func)(void *);
+	void		*_l_data;
 	int			_t;
 	uint64_t	_frame;
 	bool		_run;

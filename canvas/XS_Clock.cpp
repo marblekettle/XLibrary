@@ -6,10 +6,11 @@ XS_Clock::~XS_Clock()
 	return ;
 }
 
-XS_Clock::XS_Clock(XS_Canvas &canvas, int frame_time): \
-	_canv(&canvas), _t(frame_time), _frame(0), _run(false)
+XS_Clock::XS_Clock(int frame_time, bool (*loop_func)(void *), \
+	void *loop_data): _l_func(loop_func), _l_data(loop_data), \
+	_t(frame_time), _frame(0), _run(false)
 {
-	return ;
+ 	return ;
 }
 
 XS_Clock::XS_Clock(const XS_Clock &copy)
@@ -20,7 +21,8 @@ XS_Clock::XS_Clock(const XS_Clock &copy)
 XS_Clock	&XS_Clock::operator=(const XS_Clock &assign)
 {
 	this->_run = 0;
-	this->_canv = assign._canv;
+	this->_l_func = assign._l_func;
+	this->_l_data = assign._l_data;
 	this->_t = assign._t;
 	this->_frame = 0;
 	return (*this);
@@ -40,6 +42,12 @@ void		XS_Clock::stop()
 {
 	if (_run)
 		_run = false;
+}
+
+void		XS_Clock::setLoopFunction(bool (*func)(void *), void *data)
+{
+	_l_func = func;
+	_l_data = data;
 }
 
 void		XS_Clock::addEvent(Uint32 event, \
@@ -68,10 +76,10 @@ void		XS_Clock::__loop()
 			else if (event.type == SDL_QUIT)
 				_run = false;
 		}
-		if (_canv)
-			_canv->update();
 		if (!_run)
 			break ;
+		if (_l_func)
+			_l_func(_l_data);
 		SDL_Delay(_t);
 		_frame++;
 	}

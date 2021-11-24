@@ -66,6 +66,11 @@ void	XS_Keymap::disable()
 	_enabled = false;
 }
 
+bool	XS_Keymap::isKeyDown(SDL_Scancode key)
+{
+	return (static_cast<bool>(_keys.count(key)));
+}
+
 bool	XS_Keymap::__evt(SDL_Event &event)
 {
 	if (_enabled)
@@ -73,8 +78,14 @@ bool	XS_Keymap::__evt(SDL_Event &event)
 		if (event.type == SDL_KEYDOWN)
 		{
 			SDL_Scancode key = event.key.keysym.scancode;
+			_keys.insert(key);
 			if (_k_map.count(key))
 				return (_k_map[key](_p_map[key]));
+		}
+		else if (event.type == SDL_KEYUP)
+		{
+			SDL_Scancode key = event.key.keysym.scancode;
+			_keys.erase(key);
 		}
 	}
 	return (false);

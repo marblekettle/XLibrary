@@ -43,12 +43,24 @@ bool	exitbutton(void *ptr)
 	return (true);
 }
 
+bool	loop(void *ptr)
+{
+	XS_Canvas	*c = ((XS_Canvas **)ptr)[0];
+	XS_Keymap	*km = ((XS_Keymap **)ptr)[1];
+	if (km->isKeyDown(SDL_SCANCODE_SPACE))
+		std::cout << "space" << std::endl;
+	c->update();
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
 	XS_Canvas c("Hi", 320, 240);
-	XS_Clock cl(c);
+	XS_Clock cl(100, loop, &c);
 	XS_Keymap km(cl);
+	void	*data[2] = {&c, &km};
 	SDL_Surface *img = SDL_LoadBMP("../brian.bmp");
+	cl.setLoopFunction(loop, &data);
 	c.blit(img);
 //	cl.addEvent(SDL_KEYDOWN, test, &c);
 	km.addKey(SDL_SCANCODE_1, test1, &c);
