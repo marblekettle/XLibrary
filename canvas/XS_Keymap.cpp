@@ -3,7 +3,10 @@
 XS_Keymap::~XS_Keymap()
 {
 	if (_clock)
+	{
 		_clock->removeEvent(SDL_KEYDOWN);
+		_clock->removeEvent(SDL_KEYUP);
+	}
 }
 
 XS_Keymap::XS_Keymap(): _enabled(false), _clock(nullptr) {};

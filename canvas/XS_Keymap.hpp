@@ -27,7 +27,7 @@ public:
 	void		disable();
 
 	bool		isKeyDown(SDL_Scancode key);
-private:
+protected:
 	bool		__evt(SDL_Event &event);
 	t_keymap	_k_map;
 	t_ptrmap	_p_map;

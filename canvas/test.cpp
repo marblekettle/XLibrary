@@ -1,4 +1,4 @@
-#include "XS_Keymap.hpp"
+#include "XS_Core.hpp"
 #include <iostream>
 
 typedef struct	s_resolutions
@@ -52,7 +52,7 @@ bool	loop(void *ptr)
 	c->update();
 	return (true);
 }
-
+/*
 int	main(int ac, char **av)
 {
 	XS_Canvas c("Hi", 320, 240);
@@ -68,5 +68,15 @@ int	main(int ac, char **av)
 	km.addKey(SDL_SCANCODE_ESCAPE, exitbutton, &cl);
 	km.enable();
 	cl.start();
+	return (0);
+}
+*/
+
+int	main(int ac, char **av)
+{
+	XS_Core	core("Hello");
+	core.start();
+	core.refresh();
+	core.start();
 	return (0);
 }

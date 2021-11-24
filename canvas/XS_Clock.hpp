@@ -25,7 +25,7 @@ public:
 					void *data = NULL);
 	void		removeEvent(Uint32 event);
 
-private:
+protected:
 	void		__loop();
 	t_eventmap	_e_map;
 	t_ptrmap	_p_map;

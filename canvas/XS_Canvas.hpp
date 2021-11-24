@@ -37,14 +37,15 @@ public:
 	void		refresh();
 	void		blit(SDL_Surface *img, SDL_Rect *rect = NULL);
 	
-private:
-				XS_Canvas();
+protected:
 	SDL_Window	*_win;
 	SDL_Surface	*_srf;
 	std::string	_title;
 	int			_w;
 	int			_h;
 	bool		_ready;
+private:
+				XS_Canvas();
 };
 
 #endif
