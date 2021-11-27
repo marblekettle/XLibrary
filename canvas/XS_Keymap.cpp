@@ -1,12 +1,10 @@
 #include "XS_Keymap.hpp"
+#include <iostream>
 
 XS_Keymap::~XS_Keymap()
 {
 	if (_clock)
-	{
-		_clock->removeEvent(SDL_KEYDOWN);
-		_clock->removeEvent(SDL_KEYUP);
-	}
+		unlink();
 }
 
 XS_Keymap::XS_Keymap(): _enabled(false), _clock(nullptr) {};
@@ -25,8 +23,9 @@ XS_Keymap	&XS_Keymap::operator=(const XS_Keymap &assign)
 {
 	this->_k_map = assign._k_map;
 	this->_p_map = assign._p_map;
-	this->link(*(assign._clock));
-	this->_enabled = false;
+	this->_keys = assign._keys;
+	//this->link(*(assign._clock));
+	this->_enabled = assign._enabled;
 	return (*this);
 }
 
@@ -39,12 +38,16 @@ void	XS_Keymap::link(XS_Clock &clock)
 
 void	XS_Keymap::unlink()
 {
+	_clock->removeEvent(SDL_KEYDOWN);
+	_clock->removeEvent(SDL_KEYUP);
 	_clock = nullptr;
 }
 
 bool	XS_Keymap::keymapEventHandle(SDL_Event &event, void *keymap)
 {
-	return (((XS_Keymap *)keymap)->__evt(event));
+	std::cout << (static_cast<XS_Keymap *>(keymap))->_clock << std::endl;
+	std::cout << (static_cast<XS_Keymap *>(keymap))->_enabled << std::endl;
+	return ((static_cast<XS_Keymap *>(keymap))->__evt(event));
 }
 
 void	XS_Keymap::addKey(SDL_Scancode key, bool (*func)(void *), void *data)

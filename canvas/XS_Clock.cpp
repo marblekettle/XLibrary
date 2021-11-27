@@ -20,7 +20,7 @@ XS_Clock::XS_Clock(const XS_Clock &copy)
 
 XS_Clock	&XS_Clock::operator=(const XS_Clock &assign)
 {
-	this->_run = 0;
+	this->_run = false;
 	this->_l_func = assign._l_func;
 	this->_l_data = assign._l_data;
 	this->_t = assign._t;
@@ -71,6 +71,8 @@ void		XS_Clock::__loop()
 	{
 		while (SDL_PollEvent(&event))
 		{
+			if (event.type == SDL_QUIT)
+				std::cout << event.type << std::endl;
 			if (_e_map.count(event.type))
 				(_e_map[event.type])(event, _p_map[event.type]);
 			else if (event.type == SDL_QUIT)

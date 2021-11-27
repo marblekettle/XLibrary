@@ -27,13 +27,13 @@ public:
 	void		disable();
 
 	bool		isKeyDown(SDL_Scancode key);
+	bool		_enabled;
 protected:
 	bool		__evt(SDL_Event &event);
 	t_keymap	_k_map;
 	t_ptrmap	_p_map;
 	t_keys		_keys;
 	XS_Clock	*_clock;
-	bool		_enabled;
 };
 
 #endif

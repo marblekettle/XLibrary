@@ -1,4 +1,5 @@
 #include "XS_Core.hpp"
+#include <iostream>
 
 XS_Core::~XS_Core()
 {

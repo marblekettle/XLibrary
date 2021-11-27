@@ -72,11 +72,30 @@ int	main(int ac, char **av)
 }
 */
 
+bool	stop_core(void *ptr)
+{
+	(static_cast<XS_Clock *>(ptr))->stop();
+	return (false);
+}
+
 int	main(int ac, char **av)
 {
-	XS_Core	core("Hello");
-	core.start();
-	core.refresh();
-	core.start();
+//	XS_Core	core("Hello");
+//	XS_Core core2(core);
+	XS_Canvas c("Hello");
+//	XS_Canvas c2(c);
+	XS_Clock cl;
+	//cl.start();
+	//c.refresh();
+	//core.addEvent(SDL_KEYDOWN, stop_core, &core);
+	XS_Keymap core(cl);
+	XS_Keymap core2(core);
+	core.addKey(SDL_SCANCODE_SPACE, stop_core, &cl);
+	core.enable();
+	cl.start();
+	c.refresh();
+	//core = core2;
+	std::cout << "a" << std::endl;
+	cl.start();
 	return (0);
 }
