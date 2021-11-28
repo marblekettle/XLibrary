@@ -1,5 +1,4 @@
 #include "XS_Core.hpp"
-#include <iostream>
 
 XS_Core::~XS_Core()
 {
@@ -23,5 +22,6 @@ XS_Core		&XS_Core::operator=(const XS_Core &assign)
 	XS_Clock::operator=(assign);
 	XS_Keymap::operator=(assign);
 	XS_Canvas::operator=(assign);
+	this->link(*this);
 	return (*this);
 }
