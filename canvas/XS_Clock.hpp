@@ -24,6 +24,10 @@ public:
 	void		addEvent(Uint32 event, bool (*func)(SDL_Event &, void *), \
 					void *data = NULL);
 	void		removeEvent(Uint32 event);
+	bool		lastReturn();
+	uint64_t	getFrame();
+	int			getFrameTime();
+	uint64_t	getTime();
 
 protected:
 	void		__loop();
@@ -34,6 +38,7 @@ protected:
 	int			_t;
 	uint64_t	_frame;
 	bool		_run;
+	bool		_ret;
 };
 
 #endif

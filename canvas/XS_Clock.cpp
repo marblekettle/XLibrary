@@ -74,7 +74,7 @@ void		XS_Clock::__loop()
 			if (event.type == SDL_QUIT)
 				std::cout << event.type << std::endl;
 			if (_e_map.count(event.type))
-				(_e_map[event.type])(event, _p_map[event.type]);
+				_ret = (_e_map[event.type])(event, _p_map[event.type]);
 			else if (event.type == SDL_QUIT)
 				_run = false;
 		}
@@ -85,4 +85,24 @@ void		XS_Clock::__loop()
 		SDL_Delay(_t);
 		_frame++;
 	}
+}
+
+bool		XS_Clock::lastReturn()
+{
+	return (_ret);
+}
+
+uint64_t	XS_Clock::getFrame()
+{
+	return (_frame);
+}
+
+int			XS_Clock::getFrameTime()
+{
+	return (_t);
+}
+
+uint64_t	XS_Clock::getTime()
+{
+	return (_t * _frame);
 }
