@@ -1,5 +1,8 @@
 NAME = out
-SRC = test.cpp XS_Canvas.cpp XS_Clock.cpp XS_Keymap.cpp XS_Core.cpp
+SRC = test.cpp \
+XCanvas.cpp \
+XClock.cpp \
+XClockSetting.cpp
 SDL_DIR = ..\..\SDL2\x86_64-w64-mingw32
 INCLUDE_DIR = include\SDL2\
 
