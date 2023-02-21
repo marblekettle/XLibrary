@@ -21,11 +21,13 @@ void	XClockSetting::addEvent(Uint32 event, \
 }
 
 void	XClockSetting::removeEvent(Uint32 event) {
-	_e_map.erase(event);
-	_p_map.erase(event);
+	if (isEvent(event)) {
+		_e_map.erase(event);
+		_p_map.erase(event);
+	}
 }
 
-bool	XClockSetting::isEvent(Uint32 event) {
+bool	XClockSetting::isEvent(Uint32 event) const {
 	return (_e_map.count(event) ? true : false);
 }
 

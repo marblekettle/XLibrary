@@ -1,9 +1,10 @@
 #include "XCanvas.hpp"
 #include "XClock.hpp"
+#include "XKeyMap.hpp"
 #include <iostream>
 
-bool	KeyDown(SDL_Event& evt, void* data) {
-	std::cout << evt.key.keysym.scancode << std::endl;
+bool	SpacePress(void* data) {
+	std::cerr << "Space" << std::endl;
 	return (true);
 }
 
@@ -12,7 +13,9 @@ int	main(int ac, char** av)
 	XCanvas	c("Bluh");
 	XClock	cl;
 	XClockSetting	set;
-	set.addEvent(SDL_KEYDOWN, &KeyDown, &cl);
+	XKeyMap	km;
+	km.addPressKey(SDL_SCANCODE_SPACE, SpacePress);
+	km.linkSetting(set);
 	cl.setSetting(set);
 	cl.start();
 	return (0);

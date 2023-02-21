@@ -1,8 +1,9 @@
 NAME = out
 SRC = test.cpp \
-XCanvas.cpp \
-XClock.cpp \
-XClockSetting.cpp
+	XCanvas.cpp \
+	XClock.cpp \
+	XClockSetting.cpp \
+	XKeyMap.cpp
 SDL_DIR = ..\..\SDL2\x86_64-w64-mingw32
 INCLUDE_DIR = include\SDL2\
 

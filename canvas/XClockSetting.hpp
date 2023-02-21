@@ -16,7 +16,7 @@ public:
 	XClockSetting&	operator=(const XClockSetting& x);
 	void	addEvent(Uint32 event, bool (*func)(SDL_Event&, void*), void* ptr = NULL);
 	void	removeEvent(Uint32 event);
-	bool	isEvent(Uint32 event);
+	bool	isEvent(Uint32 event) const;
 	bool	runEvent(SDL_Event& event);
 	class	UnknownEvent : public std::exception {
 	public:
