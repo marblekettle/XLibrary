@@ -1,6 +1,6 @@
 #ifndef XKEYMAP_HPP
 # define XKEYMAP_HPP
-# include <SDL.h>
+# include <SDL2/SDL.h>
 # include "XClockSetting.hpp"
 
 typedef std::map<SDL_Scancode, bool (*)(void*)>	t_pressmap;

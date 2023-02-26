@@ -1,6 +1,6 @@
 #ifndef XCLOCKSETTING_HPP
 # define XCLOCKSETTING_HPP
-# include <SDL.h>
+# include <SDL2/SDL.h>
 # include <map>
 # include <iostream>
 

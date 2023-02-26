@@ -9,7 +9,7 @@
 # ifndef DEF_HEIGHT
 #  define DEF_HEIGHT 480
 # endif
-# include <SDL.h>
+# include <SDL2/SDL.h>
 # include <string>
 using namespace std;
 

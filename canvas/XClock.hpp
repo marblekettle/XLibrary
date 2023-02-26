@@ -1,8 +1,11 @@
 #ifndef XCLOCK_HPP
 # define XCLOCK_HPP
 # include <iostream>
-# include <Windows.h>
+//# include <Windows.h>
+# include <chrono>
 # include "XClockSetting.hpp"
+
+typedef	std::chrono::time_point<std::chrono::steady_clock>	t_time;
 
 class	XClock {
 public:
@@ -25,7 +28,7 @@ private:
 	bool 		(*_l_func)(void *);
 	void*		_l_data;
 	uint32_t	_in;
-	uint64_t	_start;
+	t_time		_start;
 	uint32_t	_t;
 	uint32_t	_frame; 
 	bool		_run;

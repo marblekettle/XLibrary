@@ -6,7 +6,7 @@ XClock::~XClock() {
 }
 
 XClock::XClock(uint32_t inter, bool (*loop_func)(void*), void* loop_data): \
-	_set(NULL), _l_func(loop_func), _l_data(loop_data), _in(inter), _start(0), _t(0), \
+	_set(NULL), _l_func(loop_func), _l_data(loop_data), _in(inter), _t(0), \
 	_frame(0), _run(false), _ret(false), _ready(false) {
 	try {
 		if (!SDL_WasInit(SDL_INIT_TIMER)) {
@@ -23,7 +23,7 @@ XClock::XClock(uint32_t inter, bool (*loop_func)(void*), void* loop_data): \
 
 void	XClock::start() {
 	if (_ready && !_run) {
-		_start = GetTickCount64();
+		_start = std::chrono::steady_clock::now();
 		_frame = 0;
 		_run = true;
 		__loop();
@@ -84,7 +84,8 @@ void		XClock::__loop() {
 		if (_l_func)
 			_l_func(_l_data);
 		SDL_Delay(_in);
-		_t = static_cast<uint32_t>(GetTickCount64() - _start);
+		_t = std::chrono::duration_cast<std::chrono::milliseconds>( \
+			std::chrono::steady_clock::now() - _start).count();
 		_frame++;
 	}
 }

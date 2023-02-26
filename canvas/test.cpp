@@ -4,7 +4,7 @@
 #include <iostream>
 
 bool	SpacePress(void* data) {
-	std::cerr << "Space" << std::endl;
+	std::cerr << reinterpret_cast<XClock*>(data)->getTime() << std::endl;
 	return (true);
 }
 
@@ -14,7 +14,7 @@ int	main(int ac, char** av)
 	XClock	cl;
 	XClockSetting	set;
 	XKeyMap	km;
-	km.addPressKey(SDL_SCANCODE_SPACE, SpacePress);
+	km.addPressKey(SDL_SCANCODE_SPACE, SpacePress, &cl);
 	km.linkSetting(set);
 	cl.setSetting(set);
 	cl.start();
