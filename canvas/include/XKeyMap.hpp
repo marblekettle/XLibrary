@@ -3,6 +3,8 @@
 # include <SDL2/SDL.h>
 # include "XClockSetting.hpp"
 
+namespace XLibrary {
+
 typedef std::map<SDL_Scancode, bool (*)(void*)>	t_pressmap;
 
 typedef	std::map<SDL_Scancode, bool>	t_heldmap;
@@ -35,6 +37,8 @@ private:
 	t_heldmap	_h_map;
 	t_pressmap	_k_map;
 	t_ptrkeymap	_p_map;
+};
+
 };
 
 #endif

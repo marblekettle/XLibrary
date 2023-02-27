@@ -15,7 +15,7 @@ else
 endif
 LIBS = $(MING_LIB) -lSDL2main -lSDL2
 SDL_LIBS = -I$(SDL_DIR)\$(INCLUDE_DIR) -L$(SDL_DIR)\lib $(LIBS)
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra
 
 %.o: %.cpp
 	$(CC) $(FLAGS) -c $< -I$(INCLUDE_DIR) $(SDL_LIBS) -o $@

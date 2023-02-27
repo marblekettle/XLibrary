@@ -4,6 +4,8 @@
 # include <map>
 # include <iostream>
 
+namespace XLibrary {
+
 typedef std::map<Uint32, bool (*)(SDL_Event&, void*)> t_eventmap;
 
 typedef std::map<Uint32, void*> t_ptrmap;
@@ -28,6 +30,8 @@ public:
 private:
 	t_eventmap	_e_map;
 	t_ptrmap	_p_map;
+};
+
 };
 
 #endif

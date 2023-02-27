@@ -1,9 +1,10 @@
 #ifndef XCLOCK_HPP
 # define XCLOCK_HPP
 # include <iostream>
-//# include <Windows.h>
 # include <chrono>
 # include "XClockSetting.hpp"
+
+namespace XLibrary {
 
 typedef	std::chrono::time_point<std::chrono::steady_clock>	t_time;
 
@@ -37,6 +38,8 @@ private:
 				XClock(const XClock& copy);
 	XClock&		operator=(const XClock& assign);
 	void		__loop();
+};
+
 };
 
 #endif

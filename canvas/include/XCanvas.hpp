@@ -11,18 +11,19 @@
 # endif
 # include <SDL2/SDL.h>
 # include <string>
-using namespace std;
+
+namespace XLibrary {
 
 class	XCanvas {
 public:
 	~XCanvas();
 	XCanvas(const char* title, int width = DEF_WIDTH, int height = DEF_HEIGHT);
 	SDL_Window&	getWindow() const;
-	string		getTitle() const;
+	std::string	getTitle() const;
 	int			getWidth() const;
 	int			getHeight() const;
 	bool		isReady() const;
-	void		setTitle(const string& title);
+	void		setTitle(const std::string& title);
 	void		setWidth(int width);
 	void		setHeight(int height);
 	void		update();
@@ -33,7 +34,7 @@ public:
 protected:
 	SDL_Window*		_win;
 	SDL_Surface*	_srf;
-	string			_title;
+	std::string		_title;
 	int				_w;
 	int				_h;
 	bool			_ready;
@@ -41,6 +42,8 @@ private:
 	XCanvas();
 	XCanvas(const XCanvas& copy);
 	XCanvas&	operator=(const XCanvas& assign);
+};
+
 };
 
 #endif
