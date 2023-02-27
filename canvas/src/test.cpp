@@ -10,6 +10,8 @@ bool	SpacePress(void* data) {
 
 int	main(int ac, char** av)
 {
+	(void)ac;
+	(void)av;
 	XCanvas	c("Bluh");
 	XClock	cl;
 	XClockSetting	set;
