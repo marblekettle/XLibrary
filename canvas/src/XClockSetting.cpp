@@ -1,4 +1,5 @@
 #include "XClockSetting.hpp"
+using namespace XLibrary;
 
 XClockSetting::XClockSetting() {};
 

@@ -1,7 +1,7 @@
 #include "XCanvas.hpp"
 #include <iostream>
 #include <cstdlib>
-using namespace std;
+using namespace XLibrary;
 
 XCanvas::~XCanvas() {
 	SDL_DestroyWindow(_win);
@@ -27,7 +27,7 @@ XCanvas::XCanvas(const char* title, int width, int height): \
 		update();
 	}
 	catch (const char* err) {
-		cerr << "Error: " << err << endl;
+		std::cerr << "Error: " << err << std::endl;
 	}
 }
 
@@ -35,7 +35,7 @@ SDL_Window&	XCanvas::getWindow() const {
 	return (*_win);
 }
 
-string		XCanvas::getTitle() const {
+std::string	XCanvas::getTitle() const {
 	return (_title);
 }
 
@@ -51,7 +51,7 @@ bool		XCanvas::isReady() const {
 	return (_ready);
 }
 
-void		XCanvas::setTitle(const string& title) {
+void		XCanvas::setTitle(const std::string& title) {
 	_title = title;
 }
 

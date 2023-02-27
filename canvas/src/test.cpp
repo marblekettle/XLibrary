@@ -2,6 +2,7 @@
 #include "XClock.hpp"
 #include "XKeyMap.hpp"
 #include <iostream>
+using namespace XLibrary;
 
 int	g_counter = 0;
 

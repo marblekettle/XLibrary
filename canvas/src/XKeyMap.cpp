@@ -1,4 +1,5 @@
 #include "XKeyMap.hpp"
+using namespace XLibrary;
 
 XKeyMap::XKeyMap() {};
 

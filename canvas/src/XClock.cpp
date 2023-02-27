@@ -1,5 +1,5 @@
 #include "XClock.hpp"
-using namespace std;
+using namespace XLibrary;
 
 XClock::~XClock() {
 	stop();
@@ -17,7 +17,7 @@ XClock::XClock(uint32_t inter, bool (*loop_func)(void*), void* loop_data): \
 		_ready = true;
 	}
 	catch (const char& err) {
-		cerr << "Error: " << err << endl;
+		std::cerr << "Error: " << err << std::endl;
 	}
 }
 
