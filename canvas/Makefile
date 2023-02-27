@@ -15,7 +15,7 @@ else
 endif
 LIBS = $(MING_LIB) -lSDL2main -lSDL2
 SDL_LIBS = -I$(SDL_DIR)\$(INCLUDE_DIR) -L$(SDL_DIR)\lib $(LIBS)
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 %.o: %.cpp
 	$(CC) $(FLAGS) -c $< -I$(INCLUDE_DIR) $(SDL_LIBS) -o $@
@@ -25,7 +25,7 @@ all: $(NAME) test.exe
 $(NAME): $(SRC:.cpp=.o)
 	ar -rc $(NAME) $(SRC:.cpp=.o)
 
-test.exe: $(NAME)
+test.exe: $(NAME) src/test.cpp
 	$(CC) $(FLAGS) src/test.cpp $(NAME) -I$(INCLUDE_DIR) $(SDL_LIBS) -o test.exe
 
 clean:

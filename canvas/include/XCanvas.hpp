@@ -28,6 +28,8 @@ public:
 	void		update();
 	void		refresh();
 	void		blit(SDL_Surface* img, SDL_Rect* rect = NULL);
+	void		setPixel(int x, int y, SDL_Color& color);
+	void		putPixel(int x, int y, SDL_Color& color);
 protected:
 	SDL_Window*		_win;
 	SDL_Surface*	_srf;

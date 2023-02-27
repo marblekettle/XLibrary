@@ -22,6 +22,7 @@ XCanvas::XCanvas(const char* title, int width, int height): \
 		if (!_win)
 			throw ("Cannot create window.");
 		_srf = SDL_GetWindowSurface(_win);
+		SDL_LockSurface(_srf);
 		_ready = true;
 		update();
 	}
@@ -85,7 +86,27 @@ void		XCanvas::refresh() {
 
 void		XCanvas::blit(SDL_Surface* img, SDL_Rect* rect) {
 	if (_ready) {
+		SDL_UnlockSurface(_srf);
 		SDL_BlitSurface(img, rect, _srf, NULL);
+		SDL_LockSurface(_srf);
+		this->update();
+	}
+}
+
+void		XCanvas::setPixel(int x, int y, SDL_Color& color) {
+	if (_srf && x >= 0 && x < _w && y >= 0 && y < _h) {
+		char*	pixels = reinterpret_cast<char*>(_srf->pixels);
+		uint32_t*	place = reinterpret_cast<uint32_t*>(pixels + \
+			(_srf->format->BytesPerPixel * x) + (_srf->pitch * y));
+		uint32_t	pixel = SDL_MapRGB(_srf->format, \
+			color.r, color.g, color.b);
+		*place = pixel;
+	}
+}
+
+void		XCanvas::putPixel(int x, int y, SDL_Color& color) {
+	if (_ready) {
+		setPixel(x, y, color);
 		this->update();
 	}
 }
