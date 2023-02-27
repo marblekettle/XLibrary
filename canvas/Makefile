@@ -1,10 +1,10 @@
 NAME = libxlib.a
 CC = g++
 SRC = \
-	src\XCanvas.cpp \
-	src\XClock.cpp \
-	src\XClockSetting.cpp \
-	src\XKeyMap.cpp
+	src/XCanvas.cpp \
+	src/XClock.cpp \
+	src/XClockSetting.cpp \
+	src/XKeyMap.cpp
 SDL_DIR = ..\..\SDL2\x86_64-w64-mingw32
 INCLUDE_DIR = include
 ifeq ($(OS), Windows_NT)
@@ -26,10 +26,10 @@ $(NAME): $(SRC:.cpp=.o)
 	ar -rc $(NAME) $(SRC:.cpp=.o)
 
 test.exe: $(NAME)
-	$(CC) $(FLAGS) src\test.cpp $(NAME) -I$(INCLUDE_DIR) $(SDL_LIBS) -o test.exe
+	$(CC) $(FLAGS) src/test.cpp $(NAME) -I$(INCLUDE_DIR) $(SDL_LIBS) -o test.exe
 
 clean:
-	$(RM_COMM) src\*.o
+	$(RM_COMM) src/*.o
 
 fclean: clean
 	$(RM_COMM) $(NAME)
