@@ -1,5 +1,5 @@
 NAME = mandelbruh.exe
-XLIB_DIR = ../../canvas
+XLIB_DIR = ../../
 CC = g++
 SRC = \
 	mandelbruh.cpp
