@@ -34,14 +34,9 @@ bool	XClockSetting::isEvent(Uint32 event) const {
 
 bool	XClockSetting::runEvent(SDL_Event& event) {
 	if (_e_map.count(event.type) == 0)
-		throw UnknownEvent(event.type);
+		throw (XUnknownEvent(event.type));
 	return (_e_map[event.type](event, _p_map[event.type]));
 }
 
-XClockSetting::UnknownEvent::UnknownEvent(Uint32 event): \
-	_event(event) {};
-
-const char*	XClockSetting::UnknownEvent::what() const throw() {
-	std::string	s = "Unknown Event: " + _event;
-	return (s.c_str());
-}
+XClockSetting::XUnknownEvent::XUnknownEvent(Uint32 event): \
+	XGenericException("Unknown event: " + event) {};

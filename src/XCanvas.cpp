@@ -9,26 +9,21 @@ XCanvas::~XCanvas() {
 
 XCanvas::XCanvas(const char* title, int width, int height): \
 	_title(title), _w(width), _h(height), _ready(false) {
-	try {
-		if (!SDL_WasInit(SDL_INIT_VIDEO)) {
-			if (SDL_Init(SDL_INIT_VIDEO))
-				throw ("SDL not initialized.");
-			atexit(SDL_Quit);
-		}
-		if (_w < 1 || _h < 1)
-			throw ("Invalid canvas size.");
-		_win = SDL_CreateWindow(title, UNDEF, UNDEF, \
-			width, height, SDL_WINDOW_SHOWN);
-		if (!_win)
-			throw ("Cannot create window.");
-		_srf = SDL_GetWindowSurface(_win);
-		SDL_LockSurface(_srf);
-		_ready = true;
-		update();
+	if (!SDL_WasInit(SDL_INIT_VIDEO)) {
+		if (SDL_Init(SDL_INIT_VIDEO))
+			throw (XGenericException("SDL not initialized."));
+		atexit(SDL_Quit);
 	}
-	catch (const char* err) {
-		std::cerr << "Error: " << err << std::endl;
-	}
+	if (_w < 1 || _h < 1)
+		throw (XGenericException("Invalid canvas size."));
+	_win = SDL_CreateWindow(title, UNDEF, UNDEF, \
+		width, height, SDL_WINDOW_SHOWN);
+	if (!_win)
+		throw (XGenericException("Cannot create window."));
+	_srf = SDL_GetWindowSurface(_win);
+	SDL_LockSurface(_srf);
+	_ready = true;
+	update();
 }
 
 SDL_Window&	XCanvas::getWindow() const {
@@ -75,7 +70,7 @@ void		XCanvas::refresh() {
 		_win = SDL_CreateWindow(_title.c_str(), UNDEF, UNDEF, \
 			_w, _h, SDL_WINDOW_SHOWN);
 		if (!_win)
-			throw("Cannot create window.");
+			throw (XGenericException("Cannot create window."));
 		_srf = SDL_GetWindowSurface(_win);
 		_ready = true;
 		update();

@@ -8,17 +8,12 @@ XClock::~XClock() {
 XClock::XClock(uint32_t inter, bool (*loop_func)(void*), void* loop_data): \
 	_set(NULL), _l_func(loop_func), _l_data(loop_data), _in(inter), _t(0), \
 	_frame(0), _run(false), _ret(false), _ready(false) {
-	try {
-		if (!SDL_WasInit(SDL_INIT_TIMER)) {
-			if (SDL_Init(SDL_INIT_TIMER))
-				throw ("SDL Timer not initialized.");
-			atexit(SDL_Quit);
-		}
-		_ready = true;
+	if (!SDL_WasInit(SDL_INIT_TIMER)) {
+		if (SDL_Init(SDL_INIT_TIMER))
+			throw (XGenericException("SDL Timer not initialized."));
+		atexit(SDL_Quit);
 	}
-	catch (const char& err) {
-		std::cerr << "Error: " << err << std::endl;
-	}
+	_ready = true;
 }
 
 void	XClock::start() {

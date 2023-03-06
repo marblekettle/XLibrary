@@ -3,6 +3,7 @@
 # include <SDL2/SDL.h>
 # include <map>
 # include <iostream>
+# include "XGenericException.hpp"
 
 namespace XLibrary {
 
@@ -20,12 +21,9 @@ public:
 	void	removeEvent(Uint32 event);
 	bool	isEvent(Uint32 event) const;
 	bool	runEvent(SDL_Event& event);
-	class	UnknownEvent : public std::exception {
+	class	XUnknownEvent : public XGenericException {
 	public:
-		UnknownEvent(Uint32 event);
-		const char*	what()	const throw();
-	private:
-		Uint32	_event;
+		XUnknownEvent(Uint32 event);
 	};
 private:
 	t_eventmap	_e_map;

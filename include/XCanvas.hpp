@@ -11,6 +11,7 @@
 # endif
 # include <SDL2/SDL.h>
 # include <string>
+# include "XGenericException.hpp"
 
 namespace XLibrary {
 

@@ -4,5 +4,6 @@
 # include "XClock.hpp"
 # include "XClockSetting.hpp"
 # include "XKeyMap.hpp"
+# include "XGenericException.hpp"
 
 #endif

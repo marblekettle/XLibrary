@@ -26,12 +26,9 @@ public:
 	bool	pressKey(SDL_Scancode key);
 	bool	isPressed(SDL_Scancode key) const;
 	static bool	handle(SDL_Event& event, void* data);
-	class UnknownKey : public std::exception {
+	class XUnknownKey : public XGenericException {
 	public:
-		UnknownKey(SDL_Scancode key);
-		const char*	what() const throw();
-	private:
-		SDL_Scancode	_key;
+		XUnknownKey(SDL_Scancode key);
 	};
 private:
 	t_heldmap	_h_map;

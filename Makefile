@@ -4,7 +4,8 @@ SRC = \
 	src/XCanvas.cpp \
 	src/XClock.cpp \
 	src/XClockSetting.cpp \
-	src/XKeyMap.cpp
+	src/XKeyMap.cpp \
+	src/XGenericException.cpp
 SDL_DIR = ..\..\SDL2\x86_64-w64-mingw32
 INCLUDE_DIR = include
 ifeq ($(OS), Windows_NT)

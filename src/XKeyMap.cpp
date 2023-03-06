@@ -46,7 +46,7 @@ bool	XKeyMap::isKey(SDL_Scancode key) {
 
 bool	XKeyMap::pressKey(SDL_Scancode key) {
 	if (!isKey(key))
-		throw UnknownKey(key);
+		throw (XUnknownKey(key));
 	return (_k_map[key](_p_map[key]));
 }
 
@@ -65,9 +65,5 @@ bool	XKeyMap::handle(SDL_Event& event, void* data) {
 	return (true);
 }
 
-XKeyMap::UnknownKey::UnknownKey(SDL_Scancode key): _key(key) {};
-
-const char*	XKeyMap::UnknownKey::what() const throw() {
-	std::string	s = "Unknown key: " + _key;
-	return (s.c_str());
-}
+XKeyMap::XUnknownKey::XUnknownKey(SDL_Scancode key): \
+	XGenericException("Unknown key: " + key) {};
