@@ -16,7 +16,7 @@ XCanvas::XCanvas(const char* title, int width, int height): \
 	}
 	if (_w < 1 || _h < 1)
 		throw (XGenericException("Invalid canvas size."));
-	_win = SDL_CreateWindow(title, UNDEF, UNDEF, \
+	_win = SDL_CreateWindow(_title.c_str(), UNDEF, UNDEF, \
 		width, height, SDL_WINDOW_SHOWN);
 	if (!_win)
 		throw (XGenericException("Cannot create window."));
